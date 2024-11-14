@@ -40,49 +40,50 @@ fun Detail(bookId: Int) {
                     .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                    Image(
-                        painter = painterResource(id = it.imageResId),
-                        contentDescription = it.title,
-                        modifier = Modifier
-                            .width(150.dp)
-                            .height(200.dp)
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
+                Image(
+                    painter = painterResource(id = it.imageResId),
+                    contentDescription = it.title,
+                    modifier = Modifier
+                        .width(150.dp)
+                        .height(200.dp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = it.title,
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold
+                    ),
+                    color = Color.Black
+                )
+                Text(
+                    text = "by ${it.author}",
+                    style = TextStyle(
+                        fontSize = 18.sp
+                    ),
+                    color = Color.Gray
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Synopsis(book = it)
+
+                Button(
+                    onClick = { },
+                    colors = ButtonDefaults.buttonColors(
+                        Color(0xFF626F47)
+                    ),
+                    modifier = Modifier.padding(16.dp)
+                ) {
                     Text(
-                        text = it.title,
+                        text = "Read Now",
+                        color = Color(0xFFFEFAE0),
                         style = TextStyle(
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold
-                        ),
-                        color = Color.Black
-                    )
-                    Text(
-                        text = "by ${it.author}",
-                        style = TextStyle(
-                            fontSize = 18.sp
-                        ),
-                        color = Color.Gray
-                    )
-                }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Synopsis(book = it)
-                }
-                    Button(
-                        onClick = { },
-                        colors = ButtonDefaults.buttonColors(
-                            Color(0xFF626F47)
-                        ),
-                        modifier = Modifier.padding(16.dp)
-                    ) {
-                        Text(
-                            text = "Read Now",
-                            color = Color(0xFFFEFAE0),
-                            style = TextStyle(
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.ExtraBold
-                            )
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.ExtraBold
                         )
-                    }
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -100,7 +101,7 @@ fun Synopsis(book: BookData) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "${book.synopsis}",
+                text = book.synopsis,
                 style = TextStyle(
                     fontSize = 16.sp,
                     textAlign = TextAlign.Justify
